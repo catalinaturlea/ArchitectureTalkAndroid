@@ -3,9 +3,12 @@ package com.example.architecturesample.module
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import com.example.architecturesample.PersistenceStorage
+import com.example.architecturesample.database.PersistenceStorage
+import com.example.architecturesample.database.ProfileDao
+import dagger.Module
 import dagger.Provides
 
+@Module
 class RoomModule {
 
     @Provides
@@ -21,4 +24,7 @@ class RoomModule {
         }
         return db
     }
+
+    @Provides
+    fun profileDao(myDatabase: PersistenceStorage): ProfileDao = myDatabase.profileDao()
 }
